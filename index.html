@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasual.graduate - Pricelist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #f8f6f0 0%, #e8e2d4 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 3px solid #8b7355;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8b7355 0%, #6b5b47 100%);
+            color: #f8f6f0;
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1, .header p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+            font-family: 'Georgia', serif;
+        }
+
+        .pricing-section {
+            padding: 60px 40px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .package-card {
+            background: #fefdfb;
+            border-radius: 0;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #d4c4a8;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: #8b7355;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #8b7355, #6b5b47);
+        }
+
+        .package-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #8b7355;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Georgia', serif;
+        }
+
+        .package-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #6b5b47;
+            margin-bottom: 25px;
+            font-family: 'Georgia', serif;
+        }
+
+        .package-features {
+            list-style: none;
+        }
+
+        .package-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f1f1;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .package-features li:before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #8b7355;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .additional-services {
+            background: #f8f6f0;
+            border-radius: 0;
+            padding: 45px;
+            margin-bottom: 40px;
+            border: 1px solid #d4c4a8;
+        }
+
+        .additional-services h2 {
+            color: #8b7355;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-family: 'Georgia', serif;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-weight: 500;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: #6b5b47;
+            font-family: 'Georgia', serif;
+        }
+
+        .terms-section {
+            background: #8b7355;
+            color: #f8f6f0;
+            padding: 50px;
+            margin-top: 40px;
+        }
+
+        .terms-section h2 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-family: 'Georgia', serif;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .terms-list {
+            list-style: none;
+        }
+
+        .terms-list li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .terms-list li:before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #d4c4a8;
+            font-size: 1rem;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #8b7355 0%, #6b5b47 100%);
+            color: #f8f6f0;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-family: 'Georgia', serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .contact-section p {
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: #f8f6f0;
+            color: #8b7355;
+            padding: 15px 35px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid #8b7355;
+            font-family: 'Georgia', serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .contact-button:hover {
+            background: #8b7355;
+            color: #f8f6f0;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-section {
+                padding: 40px 20px;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .additional-services {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Kasual.graduate</h1>
+            <p>Professional Photography & Videography Packages</p>
+        </div>
+
+        <div class="pricing-section">
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-title">GRADS 1</div>
+                    <div class="package-price">IDR 375K</div>
+                    <ul class="package-features">
+                        <li>1 Client</li>
+                        <li>Family & Friends</li>
+                        <li>Unlimited Shoot</li>
+                        <li>25 Edited Photo</li>
+                        <li>60 Minute Session</li>
+                        <li>All File On G. Drive</li>
+                    </ul>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-title">GRADS 2</div>
+                    <div class="package-price">IDR 500K</div>
+                    <ul class="package-features">
+                        <li>1 Client</li>
+                        <li>Family & Friends</li>
+                        <li>Unlimited Shoot</li>
+                        <li>40 Edited Photo</li>
+                        <li>90 Minute Session</li>
+                        <li>All File On G. Drive</li>
+                    </ul>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-title">PHOTO & REELS</div>
+                    <div class="package-price">IDR 999K</div>
+                    <ul class="package-features">
+                        <li>1 Client</li>
+                        <li>Family & Friends</li>
+                        <li>Unlimited Shoot</li>
+                        <li>45 Edited Photo</li>
+                        <li>120 Minute Session</li>
+                        <li>All File On G. Drive</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="additional-services">
+                <h2>Additional Services</h2>
+                <div class="service-item">
+                    <span class="service-name">Story Book (20x30)</span>
+                    <span class="service-price">IDR 600K</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-name">Video Reels</span>
+                    <span class="service-price">IDR 500K</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-name">Extra Time (Grads 1,2,3)</span>
+                    <span class="service-price">100K/30mnt</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2>Terms & Conditions</h2>
+            <ul class="terms-list">
+                <li>Semua paket sudah termasuk</li>
+                <li>1 Fotografer untuk 1 Client dan bebas foto bersama siapa saja, keluarga, sahabat, dsb.</li>
+                <li>Durasi foto dihitung saat mulai sesi foto, dan toleransi keterlambatan 10 mnt dari jadwal</li>
+                <li>Bebas pilih spot foto</li>
+                <li>Penyerahan file original H+1 wisuda</li>
+                <li>Estimasi waktu editing 7 hari setelah pemotretan</li>
+                <li>File foto dikirim semua, original dan edit lewat Google Drive</li>
+                <li>Maksimal download file dari Google Drive 1 Minggu setelah dikirim</li>
+                <li>Untuk Booking tanggal diharuskan sudah DP 50k dan maksimal H+1 sudah melakukan pelunasan</li>
+                <li>DP hangus apabila ada pembatalan sepihak</li>
+            </ul>
+        </div>
+
+        <div class="contact-section">
+            <h2>Ready to Book?</h2>
+            <a href="https://wa.me/6281511454832" class="contact-button">Contact Us</a>
+        </div>
+    </div>
+</body>
+</html>
